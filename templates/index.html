@@ -1,59 +1,94 @@
-<meta name="claude:viewport-fit-sides" content="cover">
-<title>WTour Travel Planner</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="/static/style.css">
-<div class="page">
-  <header class="header">
-    <div class="header-inner">
-      <a href="/" class="logo" aria-label="WTour Home">
-        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <circle cx="12" cy="12" r="10"/>
-          <path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-        </svg>
-        <span class="logo-text">WTour</span>
-      </a>
-      <p class="tagline">AI-powered travel planning</p>
-    </div>
-  </header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="WTour is a multi-agent travel planner that compares flights and hostels, builds a day-by-day route, and keeps your budget in view.">
+  <meta name="theme-color" content="#eef1e8">
+  <title>WTour — Multi-agent travel planner</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232348d8'/%3E%3Cpath d='M6 24c6-1 8-10 14-10 3 0 5-2 6-5' fill='none' stroke='%23f8f7f0' stroke-width='2.4' stroke-linecap='round' stroke-dasharray='3 4'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#travel-query">Skip to trip search</a>
 
-  <main class="main">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-content">
-        <h1 id="hero-title">Plan Your Next Adventure</h1>
-        <p class="hero-subtitle">Describe your dream trip and let our AI agents find flights, hostels, and create a personalized itinerary.</p>
+  <div class="page">
+    <header class="header">
+      <div class="header-inner">
+        <a href="/" class="logo" aria-label="WTour home">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M6 24c6-1 8-10 14-10 3 0 5-2 6-5" stroke-dasharray="3 4"/>
+              <circle cx="6" cy="24" r="2" fill="currentColor" stroke="none"/>
+              <circle cx="26" cy="9" r="2" fill="currentColor" stroke="none"/>
+            </svg>
+          </span>
+          <span class="logo-copy">
+            <span class="logo-text">WTour</span>
+            <span class="logo-sub">Multi-agent travel desk</span>
+          </span>
+        </a>
+        <p class="header-note">Flights, stays, and a route that fits your budget.</p>
+      </div>
+    </header>
 
-        <form id="travel-form" class="travel-form" novalidate>
-          <div class="form-group">
-            <label for="travel-query" class="visually-hidden">Travel query</label>
-            <div class="input-wrapper">
-              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-              </svg>
-              <input
-                type="text"
-                id="travel-query"
-                name="query"
-                class="travel-input"
-                placeholder="e.g., 7 days Japan trip from Bangladesh under $2000"
-                autocomplete="off"
-                required
-                aria-describedby="query-hint"
-              >
-            </div>
-            <span id="query-hint" class="form-hint">Try: "5 days Bali from Singapore", "Weekend trip to Paris from London"</span>
+    <main class="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <h1 id="hero-title">Tell us the trip. <span class="hero-turn">We'll map the rest.</span></h1>
+            <p class="hero-subtitle">Specialist agents compare flights and hostels, draw a day-by-day route, and keep the budget in view.</p>
+            <ul class="hero-proof" aria-label="What WTour plans">
+              <li>Flight options</li>
+              <li>Hostel picks</li>
+              <li>Daily route</li>
+              <li>Budget check</li>
+            </ul>
           </div>
-          <button type="submit" class="btn btn-primary" id="submit-btn" disabled>
-            <span class="btn-text">Generate Plan</span>
-            <span class="btn-loader" aria-hidden="true">
-              <svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10" stroke-opacity="0.25"/>
-                <path d="M12 2a10 10 0 0110 10" stroke-linecap="round"/>
-              </svg>
-            </span>
-          </button>
-        </form>
+
+          <div class="plan-panel">
+            <div class="panel-head">
+              <span class="panel-label">New trip</span>
+              <span class="panel-status"><span class="status-dot" aria-hidden="true"></span>Agents ready</span>
+            </div>
+
+            <form id="travel-form" class="travel-form" novalidate>
+              <div class="form-group">
+                <label for="travel-query" class="field-label">Where to, and what matters most?</label>
+                <div class="input-wrapper">
+                  <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <circle cx="11" cy="11" r="7"/>
+                    <path d="M21 21l-4.3-4.3"/>
+                  </svg>
+                  <input
+                    type="text"
+                    id="travel-query"
+                    name="query"
+                    class="travel-input"
+                    placeholder="7 days in Japan from Mumbai under $2,000"
+                    autocomplete="off"
+                    required
+                    aria-describedby="query-hint"
+                  >
+                </div>
+                <p id="query-hint" class="form-hint">Name your starting city, trip length, and budget for a tighter plan.</p>
+              </div>
+
+              <button type="submit" class="btn btn-primary" id="submit-btn" disabled>
+                <span class="btn-text">Plan my trip</span>
+                <span class="btn-loader" aria-hidden="true">
+                  <svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" stroke-opacity="0.25"/>
+                    <path d="M12 2a10 10 0 0110 10" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </button>
+            </form>
+          </div>
+        </div>
 
         <div id="error-toast" class="toast toast-error" role="alert" aria-live="polite" hidden>
           <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -62,175 +97,240 @@
             <line x1="12" y1="16" x2="12.01" y2="16"/>
           </svg>
           <span class="toast-message"></span>
-          <button class="toast-close" aria-label="Dismiss error">&times;</button>
+          <button class="toast-close" type="button" aria-label="Dismiss error">&times;</button>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="results" class="results-section" aria-labelledby="results-title" hidden>
-      <header class="results-header">
-        <h2 id="results-title">Your Travel Plan</h2>
-        <div class="results-actions">
-          <button id="copy-btn" class="btn btn-secondary" aria-label="Copy plan to clipboard">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-              <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
-            </svg>
-            <span>Copy</span>
+      <section id="postcards" class="postcards" aria-labelledby="postcards-title">
+        <div class="postcards-head">
+          <h2 id="postcards-title">Start with a postcard</h2>
+          <p>Pick a place, then make the dates, budget, and pace yours.</p>
+        </div>
+        <div class="postcard-row">
+          <button type="button" class="postcard" data-query="7 days in Japan from Mumbai under $2,000">
+            <span class="postcard-photo">
+              <img src="/static/images/kyoto.jpg" alt="A pagoda at the end of a Kyoto street at dusk" width="1000" height="667" decoding="async">
+            </span>
+            <span class="postcard-caption">
+              <span class="postcard-place">Japan</span>
+              <span class="postcard-days">7 days</span>
+            </span>
+            <span class="postcard-note">Temples, markets, and city nights.</span>
           </button>
-          <button id="new-search-btn" class="btn btn-ghost" aria-label="Start new search">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M3 12a9 9 0 109-9 9.75 9.75 0 00-6.74 2.74L3 8"/>
-              <path d="M3 3v5h5"/>
-            </svg>
-            <span>New Search</span>
+
+          <button type="button" class="postcard" data-query="5 days in Bali from Singapore">
+            <span class="postcard-photo">
+              <img src="/static/images/bali.jpg" alt="A Balinese temple reflected in a calm lake" width="1000" height="1327" decoding="async">
+            </span>
+            <span class="postcard-caption">
+              <span class="postcard-place">Bali</span>
+              <span class="postcard-days">5 days</span>
+            </span>
+            <span class="postcard-note">Temples, rice terraces, and quiet beaches.</span>
+          </button>
+
+          <button type="button" class="postcard" data-query="A weekend in Paris from London">
+            <span class="postcard-photo">
+              <img src="/static/images/paris.jpg" alt="The Eiffel Tower above the Seine at dusk" width="1000" height="665" decoding="async">
+            </span>
+            <span class="postcard-caption">
+              <span class="postcard-place">Paris</span>
+              <span class="postcard-days">Weekend</span>
+            </span>
+            <span class="postcard-note">Cafés, museums, and a river walk.</span>
           </button>
         </div>
-      </header>
+      </section>
 
-      <div class="results-grid">
-        <article class="card card-summary" data-section="summary">
-          <header class="card-header">
-            <div class="card-icon-wrapper">
-              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                <polyline points="14 2 14 8 20 8"/>
-                <line x1="16" y1="13" x2="8" y2="13"/>
-                <line x1="16" y1="17" x2="8" y2="17"/>
-                <polyline points="10 9 9 9 8 9"/>
-              </svg>
+      <section id="how-it-works" class="agent-route" aria-labelledby="agent-route-title">
+        <h2 id="agent-route-title" class="agent-route-title">How the desk works</h2>
+        <ol class="agent-route-list">
+          <li class="agent-stop">
+            <span class="stop-number" aria-hidden="true">01</span>
+            <div class="stop-copy">
+              <h3>You describe the trip</h3>
+              <p>Share your origin, dates, budget, and the kind of days you want.</p>
             </div>
-            <h3>Trip Summary</h3>
-          </header>
-          <div class="card-content" id="summary-content"></div>
-        </article>
-
-        <article class="card card-flights" data-section="flights">
-          <header class="card-header">
-            <div class="card-icon-wrapper">
-              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
-              </svg>
+          </li>
+          <li class="agent-stop">
+            <span class="stop-number" aria-hidden="true">02</span>
+            <div class="stop-copy">
+              <h3>Agents compare options</h3>
+              <p>Flight and hostel searches run side by side, then meet the route.</p>
             </div>
-            <h3>Flight Details</h3>
-          </header>
-          <div class="card-content" id="flights-content"></div>
-        </article>
-
-        <article class="card card-hostels" data-section="hostels">
-          <header class="card-header">
-            <div class="card-icon-wrapper">
-              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-                <polyline points="9 22 9 12 15 12 15 22"/>
-              </svg>
+          </li>
+          <li class="agent-stop">
+            <span class="stop-number" aria-hidden="true">03</span>
+            <div class="stop-copy">
+              <h3>Your dossier arrives</h3>
+              <p>One plan with flights, stays, a daily itinerary, and a budget check.</p>
             </div>
-            <h3>Hostel Suggestions</h3>
-          </header>
-          <div class="card-content" id="hostels-content"></div>
-        </article>
+          </li>
+        </ol>
+      </section>
 
-        <article class="card card-itinerary" data-section="itinerary">
-          <header class="card-header">
-            <div class="card-icon-wrapper">
-              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                <line x1="16" y1="2" x2="16" y2="6"/>
-                <line x1="8" y1="2" x2="8" y2="6"/>
-                <line x1="3" y1="10" x2="21" y2="10"/>
+      <section id="results" class="results-section" aria-labelledby="results-title" hidden>
+        <header class="results-header">
+          <div class="results-heading">
+            <h2 id="results-title" tabindex="-1">Your travel plan</h2>
+            <p id="results-query" class="results-query"></p>
+          </div>
+          <div class="results-actions">
+            <button id="copy-btn" class="btn btn-secondary" type="button" aria-label="Copy plan to clipboard">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
               </svg>
-            </div>
-            <h3>Day-to-Day Itinerary</h3>
-          </header>
-          <div class="card-content" id="itinerary-content"></div>
-        </article>
-
-        <article class="card card-budget" data-section="budget">
-          <header class="card-header">
-            <div class="card-icon-wrapper">
-              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <line x1="12" y1="1" x2="12" y2="23"/>
-                <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+              <span>Copy plan</span>
+            </button>
+            <button id="new-search-btn" class="btn btn-secondary" type="button" aria-label="Start a new search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M3 12a9 9 0 109-9 9.75 9.75 0 00-6.74 2.74L3 8"/>
+                <path d="M3 3v5h5"/>
               </svg>
-            </div>
-            <h3>Budget Estimate</h3>
-          </header>
-          <div class="card-content" id="budget-content"></div>
-        </article>
+              <span>Start over</span>
+            </button>
+          </div>
+        </header>
 
-        <article class="card card-tips" data-section="tips">
-          <header class="card-header">
-            <div class="card-icon-wrapper">
-              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M18 16a6 6 0 00-12 0"/>
-                <line x1="12" y1="2" x2="12" y2="16"/>
-              </svg>
-            </div>
-            <h3>Final Tips</h3>
-          </header>
-          <div class="card-content" id="tips-content"></div>
-        </article>
-      </div>
+        <div class="results-grid">
+          <article class="card card-summary" data-section="summary">
+            <header class="card-header">
+              <div class="card-icon-wrapper">
+                <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <line x1="16" y1="13" x2="8" y2="13"/>
+                  <line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+              </div>
+              <h3>Trip summary</h3>
+            </header>
+            <div class="card-content" id="summary-content"></div>
+          </article>
 
-      <div id="raw-response" class="raw-response" hidden>
-        <details>
-          <summary>View Raw API Response</summary>
-          <pre id="raw-content"></pre>
-        </details>
-      </div>
-    </section>
+          <article class="card card-flights" data-section="flights">
+            <header class="card-header">
+              <div class="card-icon-wrapper">
+                <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M17.8 19.2L16 11l3.5-3.5a2.1 2.1 0 00-3-3L13 8 4.8 6.2a.5.5 0 00-.4.8L8 11l-2 2-2.5-.5a.5.5 0 00-.4.8L5 16l2.7 1.9a.5.5 0 00.8-.4L8 15l2-2 3.9 3.6a.5.5 0 00.8-.4z"/>
+                </svg>
+              </div>
+              <h3>Flight details</h3>
+            </header>
+            <div class="card-content" id="flights-content"></div>
+          </article>
 
-    <section id="loading" class="loading-section" aria-live="polite" hidden>
-      <div class="loading-card">
-        <div class="loading-spinner" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10" stroke-opacity="0.25"/>
-            <path d="M12 2a10 10 0 0110 10" stroke-linecap="round">
-              <animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/>
-            </path>
-          </svg>
+          <article class="card card-hostels" data-section="hostels">
+            <header class="card-header">
+              <div class="card-icon-wrapper">
+                <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                  <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+              </div>
+              <h3>Hostel suggestions</h3>
+            </header>
+            <div class="card-content" id="hostels-content"></div>
+          </article>
+
+          <article class="card card-itinerary" data-section="itinerary">
+            <header class="card-header">
+              <div class="card-icon-wrapper">
+                <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                  <circle cx="8" cy="15" r="1" fill="currentColor" stroke="none"/>
+                  <circle cx="12" cy="15" r="1" fill="currentColor" stroke="none"/>
+                  <circle cx="16" cy="15" r="1" fill="currentColor" stroke="none"/>
+                </svg>
+              </div>
+              <h3>Day-to-day itinerary</h3>
+            </header>
+            <div class="card-content" id="itinerary-content"></div>
+          </article>
+
+          <article class="card card-budget" data-section="budget">
+            <header class="card-header">
+              <div class="card-icon-wrapper">
+                <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <line x1="12" y1="1" x2="12" y2="23"/>
+                  <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+                </svg>
+              </div>
+              <h3>Budget estimate</h3>
+            </header>
+            <div class="card-content" id="budget-content"></div>
+          </article>
+
+          <article class="card card-tips" data-section="tips">
+            <header class="card-header">
+              <div class="card-icon-wrapper">
+                <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M9 18h6"/>
+                  <path d="M10 22h4"/>
+                  <path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/>
+                </svg>
+              </div>
+              <h3>Final tips</h3>
+            </header>
+            <div class="card-content" id="tips-content"></div>
+          </article>
         </div>
-        <h3 class="loading-title">Planning Your Trip</h3>
-        <p class="loading-subtitle" id="loading-step">Initializing travel agents...</p>
-        <div class="loading-steps" id="loading-steps">
-          <div class="loading-step" data-step="flights">
-            <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
-            </svg>
-            <span>Searching flights</span>
-          </div>
-          <div class="loading-step" data-step="hostels">
-            <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-              <polyline points="9 22 9 12 15 12 15 22"/>
-            </svg>
-            <span>Finding hostels</span>
-          </div>
-          <div class="loading-step" data-step="itinerary">
-            <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-              <line x1="16" y1="2" x2="16" y2="6"/>
-              <line x1="8" y1="2" x2="8" y2="6"/>
-              <line x1="3" y1="10" x2="21" y2="10"/>
-            </svg>
-            <span>Creating itinerary</span>
-          </div>
-          <div class="loading-step" data-step="final">
-            <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-              <line x1="16" y1="13" x2="8" y2="13"/>
-              <line x1="16" y1="17" x2="8" y2="17"/>
-            </svg>
-            <span>Finalizing plan</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
 
-  <footer class="footer">
-    <p>Powered by LangGraph, Groq, AviationStack & Tavily</p>
-  </footer>
-</div>
-<script src="/static/script.js"></script>
+        <div id="raw-response" class="raw-response" hidden>
+          <details>
+            <summary>View raw API response</summary>
+            <pre id="raw-content"></pre>
+          </details>
+        </div>
+      </section>
+
+      <section id="loading" class="loading-section" aria-labelledby="loading-title" aria-live="polite" hidden>
+        <div class="loading-card">
+          <div class="loading-visual" aria-hidden="true">
+            <svg class="loading-route" viewBox="0 0 320 90" fill="none">
+              <path id="loading-track" d="M12 70C70 12 170 88 306 22" stroke="currentColor" stroke-width="2" stroke-dasharray="6 8" stroke-linecap="round"/>
+              <circle cx="12" cy="70" r="4" fill="currentColor"/>
+              <circle cx="306" cy="22" r="4" fill="currentColor"/>
+              <circle class="route-plane" r="6" fill="currentColor">
+                <animateMotion dur="3.6s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#loading-track"/>
+                </animateMotion>
+              </circle>
+            </svg>
+          </div>
+          <h2 id="loading-title" class="loading-title">Building your route</h2>
+          <p class="loading-subtitle" id="loading-step">Checking flights and fares...</p>
+          <ol class="loading-steps" id="loading-steps">
+            <li class="loading-step" data-step="flights">
+              <span class="step-marker">01</span>
+              <span class="step-label">Searching flights</span>
+            </li>
+            <li class="loading-step" data-step="hostels">
+              <span class="step-marker">02</span>
+              <span class="step-label">Comparing hostels</span>
+            </li>
+            <li class="loading-step" data-step="itinerary">
+              <span class="step-marker">03</span>
+              <span class="step-label">Drawing the route</span>
+            </li>
+            <li class="loading-step" data-step="final">
+              <span class="step-marker">04</span>
+              <span class="step-label">Checking the budget</span>
+            </li>
+          </ol>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Photography from <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a>. Built with LangGraph, Groq, AviationStack, and Tavily.</p>
+    </footer>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
